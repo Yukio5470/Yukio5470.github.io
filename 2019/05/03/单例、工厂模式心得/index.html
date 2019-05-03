@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Yukio&#39;s blog</title>
+  <title>单例、工厂模式心得 | Yukio&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Yukio&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="用typora的第一天">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单例、工厂模式心得">
+<meta property="og:url" content="http://yoursite.com/2019/05/03/单例、工厂模式心得/index.html">
 <meta property="og:site_name" content="Yukio&#39;s blog">
+<meta property="og:description" content="用typora的第一天">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-03T07:57:03.521Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yukio&#39;s blog">
+<meta name="twitter:title" content="单例、工厂模式心得">
+<meta name="twitter:description" content="用typora的第一天">
   
     <link rel="alternative" href="/atom.xml" title="Yukio&#39;s blog" type="application/atom+xml">
   
@@ -142,76 +146,266 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-单例、工厂模式心得" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      单例、工厂模式心得
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/03/单例、工厂模式心得/" class="archive-article-date">
+
+        
+        <a href="/2019/05/03/单例、工厂模式心得/" class="archive-article-date">
   	<time datetime="2019-05-03T07:08:41.891Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-03</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/03/单例、工厂模式心得/">单例、工厂模式心得</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>用typora的第一天</p>
+<a id="more"></a>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><h4 id="单例模式确保了运行对象只能唯一一个，且易于访问。为实现这个目的，有人提出了一个单例模型的模式动机-让类自身负责保存它的唯一实例，这个类可以保证没有其他实例创建，并且它还可以提供一个访问实例的方法。"><a href="#单例模式确保了运行对象只能唯一一个，且易于访问。为实现这个目的，有人提出了一个单例模型的模式动机-让类自身负责保存它的唯一实例，这个类可以保证没有其他实例创建，并且它还可以提供一个访问实例的方法。" class="headerlink" title="单例模式确保了运行对象只能唯一一个，且易于访问。为实现这个目的，有人提出了一个单例模型的模式动机  让类自身负责保存它的唯一实例，这个类可以保证没有其他实例创建，并且它还可以提供一个访问实例的方法。"></a>单例模式确保了运行对象只能唯一一个，且易于访问。为实现这个目的，有人提出了一个单例模型的模式动机  <code>让类自身负责保存它的唯一实例，这个类可以保证没有其他实例创建，并且它还可以提供一个访问实例的方法。</code></h4><hr>
+<ul>
+<li><p>构造方法为  <code>private</code></p>
+</li>
+<li><p>定义一个 <code>私有静态</code>的实例作为数据域</p>
+</li>
+<li>定义一个 <code>静态</code>的工厂方法，外部类不能实例化一个该类的对象</li>
+</ul>
+<h3 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h3><p>简单通俗的来讲就是 <code>你需要的时候才去创建唯一实例</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;    <span class="comment">// 单例模式确保运行对象只能唯一一个 懒汉式</span></span><br><span class="line">	</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">static</span> Singleton single = <span class="keyword">null</span>;</span><br><span class="line">		<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getSingle</span><span class="params">()</span></span>&#123;<span class="comment">//线程安全//但是同步比较慢</span></span><br><span class="line">		<span class="comment">//最好用双重检查加锁</span></span><br><span class="line">        <span class="comment">//synchronized（Singleton.class）</span></span><br><span class="line">		<span class="comment">//先检测是否创建实例，没有创建实例就加锁；</span></span><br><span class="line">			</span><br><span class="line">		<span class="keyword">if</span>(single==<span class="keyword">null</span>) &#123;</span><br><span class="line">			single = <span class="keyword">new</span> Singleton();<span class="comment">//注意这里single是静态变量，直接赋值即可；</span></span><br><span class="line">			System.out.println(<span class="string">"success"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> System.out.println(<span class="string">"only one"</span>);</span><br><span class="line">		<span class="keyword">return</span> single;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Singleton single  = <span class="keyword">new</span> Singleton(); 类加载的时候就创建实例；</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Singleton <span class="title">getSingle</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> single;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>需要注意的一点是，饿汉式能保证线程安全即不会出现创建实例不唯一，但是懒汉式不能保证这一点，在多线程的运行过程中，可能同时创建多个实例，所以需要加synchronized关键字。</p>
+</blockquote>
+<h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="comment">//import java.util.Singleton;</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonFunc</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span></span>&#123;</span><br><span class="line">		Singleton x= Singleton.getSingle();</span><br><span class="line">		System.out.println(x.hashCode());</span><br><span class="line">		Singleton y= Singleton.getSingle();</span><br><span class="line">		System.out.println(x.hashCode());</span><br><span class="line">		<span class="keyword">if</span>(x==y)  System.out.println(<span class="string">"the same"</span>);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="适用情况"><a href="#适用情况" class="headerlink" title="适用情况"></a>适用情况</h3><ol>
+<li>系统只需要一个实例对象，或者因为资源消耗太大只允许创建一个</li>
+<li>客户调用类的单个实例 <code>只允许使用一个公共访问点</code>，例如 <code>记录网站的访客人数</code>，人数作为全局访问点。</li>
+</ol>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><h3 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h3><p>首先我先介绍一下工厂方法模式，工厂模式其实顾名思义，就是工厂生产产品的模式。所以其中就会涉及到什么充当产品，什么又是工厂。</p>
+<p>先介绍工厂方法模式是因为它介于简单工厂模式和抽象工厂模式之间，弄懂了工厂方法模式就能看懂其他两个模式。</p>
+<p>工厂方法模式分为以下几类：</p>
+<ul>
+<li>抽象工厂</li>
+<li>具体工厂</li>
+<li>抽象产品</li>
+<li>具体产品</li>
+</ul>
+<blockquote>
+<p>抽象工厂： 定义了抽象方法，具体工厂需要继承或实现该类，隐藏了具体的实现细节。</p>
+</blockquote>
+<blockquote>
+<p>具体工厂： 继承或实现了抽象工厂类，每个工厂依赖于具体的产品，比简单工厂好在不需要修改工厂源码，如果增加产品，只需要重新定义一个相应的具体工厂。</p>
+</blockquote>
+<blockquote>
+<p>抽象产品： 定义了产品的抽象方法</p>
+</blockquote>
+<blockquote>
+<p>具体产品： 产品的具体细节，具备了产品的所有数据和服务，也是客户端获取的东西。</p>
+</blockquote>
+<ol>
+<li>抽象工厂</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Factoory</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Product <span class="title">produce</span><span class="params">()</span></span>;<span class="comment">//定一个接口函数创建产品	</span></span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>具体工厂</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppleStore</span> <span class="keyword">implements</span> <span class="title">Factoory</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Product <span class="title">produce</span><span class="params">()</span></span>&#123;</span><br><span class="line">		Product applet = <span class="keyword">new</span> Apple();</span><br><span class="line">		<span class="keyword">return</span> applet;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>抽象产品</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Product</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Product</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">abstract</span> <span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getDcri</span><span class="params">()</span></span>&#123;</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">"the product name is "</span> +name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>具体产品</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Apple</span> <span class="keyword">extends</span> <span class="title">Product</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String name = <span class="string">"Air Pod"</span>;</span><br><span class="line">	<span class="keyword">private</span> String  id;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Apple</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">super</span>(Apple.name);</span><br><span class="line">		<span class="keyword">this</span>.id = <span class="string">"101"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> id;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>测试test</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryFunc</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String [] args)</span></span>&#123;</span><br><span class="line">		Factoory f1 = <span class="keyword">new</span> AppleStore();</span><br><span class="line">		Product p1 = f1.produce();</span><br><span class="line">		System.out.println(p1.getId());</span><br><span class="line">		p1.getDcri();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">工厂模式</span></span><br><span class="line"><span class="comment">工厂模式的主要是把工厂和生产产品绑定在一起，和客户端分开，客户不能看到中间的生产过程</span></span><br><span class="line"><span class="comment">为了使得工厂灵活化，把工厂分为具体工厂和抽象工厂；具体工厂实现抽象工厂；易于修改</span></span><br><span class="line"><span class="comment">在具体工厂中封装所对应的具体产品，生产该产品</span></span><br><span class="line"><span class="comment">产品主要是继承一个抽象工厂类</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h3 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h3><p>简单工厂模式没有抽象工厂类，只有一个工厂类，我们只能根据预期的想法定义好可能用到的产品，如果出现了意料之外的产品，则需要修改工厂的源代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Product <span class="title">produce</span><span class="params">(String str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">"Apple"</span>.equals(str)) <span class="keyword">return</span> <span class="keyword">new</span> Apple();</span><br><span class="line">    <span class="comment">//基本就是这样子，所以我们可以看出来如果产品发生变化，需要直接修改工厂源代码，这是很危险的事情。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3><p>我们从工厂方法模式我们看出来了，一个产品对应一个工厂，但是事实上这只是少数，现实生活中我们知道一个工厂并不会只生产一个产品，可能生产多个产品。所以这个就需要用到抽象工厂模式</p>
+<p>两个概念</p>
+<blockquote>
+<p>产品等级结构：即产品的继承结构。比如一个抽象类是电视机，那么子类有海尔电视机，海信电视机等</p>
+</blockquote>
+<blockquote>
+<p>产品族：在抽象工厂模式中，产品族是指由一个工厂生产的，位于不同产品等级结构的一组产品，如海尔生产的海尔电冰箱，海尔电视机等</p>
+</blockquote>
+<p>所以综上，抽象工厂模式跟工厂方法的不同在于抽象工厂的定义不同。抽象工厂可以如下定义</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Factory</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mobile <span class="title">produce</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Laptop <span class="title">produce</span><span class="params">()</span></span>;</span><br><span class="line">&#125;<span class="comment">//具体工厂可以继承该类，并实现具体的产品实例生成。</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>总结一下，工厂模式。工厂方法模式的优点在于修改方便，且不需要编码时预见需要啥产品。但是缺点就是产品增加，工厂也要增加，占用资源。可以用在电商消息通知发送</p>
+<p>抽象工厂模式的优点在与一个工厂可以生成产品族，缺点很明显，就是产品等级结构发生变化，则可能需要改变抽象层。可以用在电子商务系统数据访问层。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/03/单例、工厂模式心得/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/30/hello-world/" class="archive-article-date">
-  	<time datetime="2019-04-30T11:36:43.019Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-30</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/30/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Welcome to my blog</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/30/hello-world/">Welcome to my blog</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单例模式"><span class="toc-number">1.</span> <span class="toc-text">单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#单例模式确保了运行对象只能唯一一个，且易于访问。为实现这个目的，有人提出了一个单例模型的模式动机-让类自身负责保存它的唯一实例，这个类可以保证没有其他实例创建，并且它还可以提供一个访问实例的方法。"><span class="toc-number">1.0.1.</span> <span class="toc-text">单例模式确保了运行对象只能唯一一个，且易于访问。为实现这个目的，有人提出了一个单例模型的模式动机  让类自身负责保存它的唯一实例，这个类可以保证没有其他实例创建，并且它还可以提供一个访问实例的方法。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#懒汉式"><span class="toc-number">1.1.</span> <span class="toc-text">懒汉式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#饿汉式"><span class="toc-number">1.2.</span> <span class="toc-text">饿汉式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试代码"><span class="toc-number">1.3.</span> <span class="toc-text">测试代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#适用情况"><span class="toc-number">1.4.</span> <span class="toc-text">适用情况</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂模式"><span class="toc-number">2.</span> <span class="toc-text">工厂模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂方法模式"><span class="toc-number">2.1.</span> <span class="toc-text">工厂方法模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简单工厂模式"><span class="toc-number">2.2.</span> <span class="toc-text">简单工厂模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#抽象工厂模式"><span class="toc-number">2.3.</span> <span class="toc-text">抽象工厂模式</span></a></li></ol></li>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+<script src="https://jjeejj.github.io/js/gitment.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2019/05/03/单例、工厂模式心得/",
+  owner: 'yukio5470',
+  repo: 'yukio5470.github.io',
+  oauth: {
+    client_id: 'c0076a9177156be8eb50',
+    client_secret: 'c5a57c0cf14433f4bca928caa2a2dc123b51ec4d',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
 
 
           </div>
@@ -234,8 +428,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
