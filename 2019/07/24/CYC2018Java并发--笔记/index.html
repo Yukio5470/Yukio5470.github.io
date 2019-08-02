@@ -6,15 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Yukio&#39;s blog</title>
+  <title>CYC2018Java并发--笔记 | Yukio&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Yukio&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="CYC2018Java并发--笔记">
+<meta property="og:url" content="http://yoursite.com/2019/07/24/CYC2018Java并发--笔记/index.html">
 <meta property="og:site_name" content="Yukio&#39;s blog">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-24T06:36:28.510Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yukio&#39;s blog">
+<meta name="twitter:title" content="CYC2018Java并发--笔记">
   
     <link rel="alternative" href="/atom.xml" title="Yukio&#39;s blog" type="application/atom+xml">
   
@@ -142,295 +143,250 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-CYC2018Java并发--笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/31/最小生成树/" class="archive-article-date">
-  	<time datetime="2019-07-31T08:03:58.762Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/31/最小生成树/">最小生成树</a>
+    <h1 class="article-title" itemprop="name">
+      CYC2018Java并发--笔记
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/30/消息队列/" class="archive-article-date">
-  	<time datetime="2019-07-30T12:30:03.607Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/30/消息队列/">消息队列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/30/分布式缓存/" class="archive-article-date">
-  	<time datetime="2019-07-30T07:46:08.274Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/30/分布式缓存/">分布式缓存</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/24/CYC2018Java并发--笔记/" class="archive-article-date">
+        
+        <a href="/2019/07/24/CYC2018Java并发--笔记/" class="archive-article-date">
   	<time datetime="2019-07-24T03:19:24.995Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-24</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/24/CYC2018Java并发--笔记/">CYC2018Java并发--笔记</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<a id="more"></a>
+<h2 id="线程状态转换"><a href="#线程状态转换" class="headerlink" title="线程状态转换"></a>线程状态转换</h2><ul>
+<li>创建</li>
+<li>可运行（包括运行和就绪）</li>
+<li>阻塞（需求的资源被其他线程加锁占用）</li>
+<li>有限期等待（sleep）</li>
+<li>无限期等待（wait）</li>
+<li>死亡（运行结束死亡或者等待过程中出现异常死亡）</li>
+</ul>
+<h2 id="线程使用"><a href="#线程使用" class="headerlink" title="线程使用"></a>线程使用</h2><h3 id="继承Thread，重写run方法"><a href="#继承Thread，重写run方法" class="headerlink" title="继承Thread，重写run方法"></a>继承Thread，重写run方法</h3><h3 id="实现Runnable，实现run方法"><a href="#实现Runnable，实现run方法" class="headerlink" title="实现Runnable，实现run方法"></a>实现Runnable，实现run方法</h3><h3 id="实现Callable，实现call方法"><a href="#实现Callable，实现call方法" class="headerlink" title="实现Callable，实现call方法"></a>实现Callable，实现call方法</h3><p>用FutureTask封装call方法的返回值，再用thread开始线程；</p>
+<h3 id="实现vs继承"><a href="#实现vs继承" class="headerlink" title="实现vs继承"></a>实现vs继承</h3><p>实现可以实现多个接口，但是继承是单继承，只能继承一个。所以实现接口的可拓展性更强。</p>
+<p>而且继承整个类的开销比较大。所以实现接口可能比较好一点</p>
+<h2 id="基础线程机制"><a href="#基础线程机制" class="headerlink" title="基础线程机制"></a>基础线程机制</h2><h3 id="Executor"><a href="#Executor" class="headerlink" title="Executor"></a>Executor</h3><p>相当于线程池。</p>
+<p>几种线程池分析： </p>
+<ul>
+<li>FixedThreadPool 固定长度的线程池，根据提交的任务，创建线程，直到达到最大线程数</li>
+<li>CacheThreadPoll 缓存线程池，提交任务会从线程池中找空闲线程，如果有则执行，没有则创建新的线程。一个线程如果空闲时间超过设置的时间会被自动销毁。</li>
+<li>singleThreadExecutor 线程池中只有一个线程，执行的类似串行操作</li>
+<li>sheculeThreadPool 跟定时执行有关</li>
+</ul>
+<h3 id="Daemom-守护线程"><a href="#Daemom-守护线程" class="headerlink" title="Daemom-守护线程"></a>Daemom-守护线程</h3><p>守护线程就是在后台提供服务的线程，当所有非守护线程结束时，守护线程也会被杀死。</p>
+<p>mian()属于非守护线程</p>
+<h3 id="Sleep"><a href="#Sleep" class="headerlink" title="Sleep"></a>Sleep</h3><p>属于thread类中的静态方法，使得一个线程陷入休眠。sleep方法不会释放该线程的锁。</p>
+<p>当使用interrupt中断时，会抛出中断异常。</p>
+<h3 id="yield"><a href="#yield" class="headerlink" title="yield"></a>yield</h3><p>表示对该线程来说，已经完成最重要的工作。告诉线程调度器，可以让其他线程执行。</p>
+<h2 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h2><h3 id="interruptedException"><a href="#interruptedException" class="headerlink" title="interruptedException"></a>interruptedException</h3><p>当一个线程使用interrupt中断其他线程时，如果其他线程正处于阻塞，有限期等待，无限期等待状态时，会抛中断异常</p>
+<h3 id="interrupted"><a href="#interrupted" class="headerlink" title="interrupted"></a>interrupted</h3><p>当一个线程使用interrupt中断其他线程时，如果该线程正在执行中，那么该线程不会被中断，但是他的interrupted会被置为true所以可以判断interrupted来判断是否中断</p>
+<h3 id="Executor-1"><a href="#Executor-1" class="headerlink" title="Executor"></a>Executor</h3><p>线程池调用ShoutDown方法的时候，会等待所有线程执行完毕之后关闭线程。如果调用shoutDownNow方法，则相当于对所有线程执行了interrupt方法。</p>
+<p>如果想针对单个线程，可以执行submit方法，返回future对象，再执行该对象的cancle（true）犯法。</p>
+<h2 id="互斥同步"><a href="#互斥同步" class="headerlink" title="互斥同步"></a>互斥同步</h2><h3 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h3><p>synchronized是jvm实现的，ReenTrantLoc是JDK实现的。</p>
+<p>synchronized同步一个方法块，类方法时，只有调用同一对象实例的方法才能同步。</p>
+<p>如果是同步一个静态方法块，或者类。只要是该类的实例，都会进行同步。</p>
+<h3 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h3><p>ReenTrantLoc时JDK中的重入锁，他是一个锁机制的类。可以对多个condition枷锁，</p>
+<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><ul>
+<li>sy基于jvm，reen是基于jdk，所以不同的jdk版本，可能reen不同</li>
+<li>新版本对sy的性能做了大优化</li>
+<li>等待过程中，如果sy一直获取不道资源的话，他也不会中断，但是reen会</li>
+<li>公平锁指的是对多个线程来说，等待同一个锁，获取的优先根据先来后到的原则。sy不是，reen是</li>
+<li>sy只能绑定一个，但是reen能绑定多个</li>
+<li>使用的选择，一般情况下如果不是为了reen的高级功能，因为reen是类，所以功能比较多。一般最好选择sy</li>
+</ul>
+<h2 id="线程之间的协作"><a href="#线程之间的协作" class="headerlink" title="线程之间的协作"></a>线程之间的协作</h2><h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><p>如果在一个线程中调用了另一个线程的join方法，会使得该线程挂起，先把另一个线程执行完，再回来执行该线程。</p>
+<h3 id="wait-notify-notifAll"><a href="#wait-notify-notifAll" class="headerlink" title="wait notify notifAll"></a>wait notify notifAll</h3><p>属于object中的方法。wait方法会把线程挂起，除非使用notify唤醒</p>
+<h3 id="await"><a href="#await" class="headerlink" title="await"></a>await</h3><p>类似于wait，但是await可以设置等待条件</p>
+<h2 id="JUS-AQS"><a href="#JUS-AQS" class="headerlink" title="JUS-AQS"></a>JUS-AQS</h2><p>是jus 的并发控制核心</p>
+<h3 id="CountDownLatch"><a href="#CountDownLatch" class="headerlink" title="CountDownLatch"></a>CountDownLatch</h3><p>控制一个线程等待多个线程，设置一个count数，如果count为零时，就会把之前挂起的线程重新唤醒</p>
+<h3 id="CyclicBarrier"><a href="#CyclicBarrier" class="headerlink" title="CyclicBarrier"></a>CyclicBarrier</h3><p>控制多个线程相互等待，设置一个count数，等count数为零时，唤醒多个线程。</p>
+<h3 id="ForkJoin"><a href="#ForkJoin" class="headerlink" title="ForkJoin"></a>ForkJoin</h3><p>可以把一个复杂的计算，分成几个小任务进行</p>
+<h2 id="Semaphore"><a href="#Semaphore" class="headerlink" title="Semaphore"></a>Semaphore</h2><p>类似于操作系统中的信号量，控制访问资源的线程数</p>
+<h3 id="FutureTask"><a href="#FutureTask" class="headerlink" title="FutureTask"></a>FutureTask</h3><p>实现RunnableFuture接口，实现了Runnable和Future，既可以执行任务，也有返回值</p>
+<h3 id="BlockingQueue"><a href="#BlockingQueue" class="headerlink" title="BlockingQueue"></a>BlockingQueue</h3><p>阻塞队列，当执行take方法时，如果队列为空会被阻塞，当执行put方法时，如果队列满，则阻塞该方法。</p>
+<p>可以用它来实现生产者和消费者模型</p>
+<h2 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h2>
+      
 
-        <div class="article-info info-on-right">
-          
-          
-
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/24/CYC2018Java并发--笔记/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/18/leetcode刷题探索2018面试算法综合（二）/" class="archive-article-date">
-  	<time datetime="2019-07-18T03:11:43.305Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/07/30/分布式缓存/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          分布式缓存
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/18/leetcode刷题探索2018面试算法综合（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">leetcode刷题探索2018面试算法综合（二）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/18/leetcode刷题探索2018面试算法综合（二）/">leetcode刷题探索2018面试算法综合（二）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#线程状态转换"><span class="toc-number">1.</span> <span class="toc-text">线程状态转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程使用"><span class="toc-number">2.</span> <span class="toc-text">线程使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#继承Thread，重写run方法"><span class="toc-number">2.1.</span> <span class="toc-text">继承Thread，重写run方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现Runnable，实现run方法"><span class="toc-number">2.2.</span> <span class="toc-text">实现Runnable，实现run方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现Callable，实现call方法"><span class="toc-number">2.3.</span> <span class="toc-text">实现Callable，实现call方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现vs继承"><span class="toc-number">2.4.</span> <span class="toc-text">实现vs继承</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础线程机制"><span class="toc-number">3.</span> <span class="toc-text">基础线程机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Executor"><span class="toc-number">3.1.</span> <span class="toc-text">Executor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Daemom-守护线程"><span class="toc-number">3.2.</span> <span class="toc-text">Daemom-守护线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sleep"><span class="toc-number">3.3.</span> <span class="toc-text">Sleep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yield"><span class="toc-number">3.4.</span> <span class="toc-text">yield</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中断"><span class="toc-number">4.</span> <span class="toc-text">中断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#interruptedException"><span class="toc-number">4.1.</span> <span class="toc-text">interruptedException</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#interrupted"><span class="toc-number">4.2.</span> <span class="toc-text">interrupted</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Executor-1"><span class="toc-number">4.3.</span> <span class="toc-text">Executor</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#互斥同步"><span class="toc-number">5.</span> <span class="toc-text">互斥同步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized"><span class="toc-number">5.1.</span> <span class="toc-text">synchronized</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReentrantLock"><span class="toc-number">5.2.</span> <span class="toc-text">ReentrantLock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#比较"><span class="toc-number">5.3.</span> <span class="toc-text">比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程之间的协作"><span class="toc-number">6.</span> <span class="toc-text">线程之间的协作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#join"><span class="toc-number">6.1.</span> <span class="toc-text">join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wait-notify-notifAll"><span class="toc-number">6.2.</span> <span class="toc-text">wait notify notifAll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#await"><span class="toc-number">6.3.</span> <span class="toc-text">await</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JUS-AQS"><span class="toc-number">7.</span> <span class="toc-text">JUS-AQS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CountDownLatch"><span class="toc-number">7.1.</span> <span class="toc-text">CountDownLatch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CyclicBarrier"><span class="toc-number">7.2.</span> <span class="toc-text">CyclicBarrier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ForkJoin"><span class="toc-number">7.3.</span> <span class="toc-text">ForkJoin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Semaphore"><span class="toc-number">8.</span> <span class="toc-text">Semaphore</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FutureTask"><span class="toc-number">8.1.</span> <span class="toc-text">FutureTask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BlockingQueue"><span class="toc-number">8.2.</span> <span class="toc-text">BlockingQueue</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java内存模型"><span class="toc-number">9.</span> <span class="toc-text">Java内存模型</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/17/leecode刷题探索2018面试算法综合（一）/" class="archive-article-date">
-  	<time datetime="2019-07-17T04:25:46.292Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-17</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/17/leecode刷题探索2018面试算法综合（一）/">leecode刷题探索2018面试算法综合（一）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/17/剑指Offer全解（一）/" class="archive-article-date">
-  	<time datetime="2019-07-17T03:26:12.525Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/17/剑指Offer全解（一）/">剑指offer全解（一）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/16/Mybatis学习总结（二）/" class="archive-article-date">
-  	<time datetime="2019-06-16T13:08:53.847Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/16/Mybatis学习总结（二）/">Mybatis学习总结（二）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/16/Mybatis学习总结（一）/" class="archive-article-date">
-  	<time datetime="2019-06-16T09:58:22.603Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/16/Mybatis学习总结（一）/">Mybatis学习总结（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/09/写给孙婕的一封信/" class="archive-article-date">
-  	<time datetime="2019-05-09T09:11:51.068Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/09/写给孙婕的一封信/">写给孙婕的一封信</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+<script src="https://jjeejj.github.io/js/gitment.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2019/07/24/CYC2018Java并发--笔记/",
+  owner: 'yukio5470',
+  repo: 'yukio5470.github.io',
+  oauth: {
+    client_id: 'c0076a9177156be8eb50',
+    client_secret: 'c5a57c0cf14433f4bca928caa2a2dc123b51ec4d',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -454,8 +410,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
