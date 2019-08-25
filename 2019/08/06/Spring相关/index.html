@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Yukio&#39;s blog</title>
+  <title>Spring相关 | Yukio&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Yukio&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="spring面试经常问的东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring相关">
+<meta property="og:url" content="http://yoursite.com/2019/08/06/Spring相关/index.html">
 <meta property="og:site_name" content="Yukio&#39;s blog">
+<meta property="og:description" content="spring面试经常问的东西">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="c:/Users/Administrator/blog/source/pic/TIM截图20190806161558.png">
+<meta property="og:updated_time" content="2019-08-25T10:02:20.015Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yukio&#39;s blog">
+<meta name="twitter:title" content="Spring相关">
+<meta name="twitter:description" content="spring面试经常问的东西">
+<meta name="twitter:image" content="c:/Users/Administrator/blog/source/pic/TIM截图20190806161558.png">
   
     <link rel="alternative" href="/atom.xml" title="Yukio&#39;s blog" type="application/atom+xml">
   
@@ -142,32 +148,98 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-剑指Offer全解（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Spring相关" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/17/剑指Offer全解（一）/">剑指offer全解（一）</a>
+    <h1 class="article-title" itemprop="name">
+      Spring相关
     </h1>
   
 
         
-        <a href="/2019/07/17/剑指Offer全解（一）/" class="archive-article-date">
-  	<time datetime="2019-07-17T03:26:12.525Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-17</time>
+        <a href="/2019/08/06/Spring相关/" class="archive-article-date">
+  	<time datetime="2019-08-06T08:16:18.861Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本次将剑指offer的题分为4次发送，实习期间偷偷懒</p>
-        
+        <p>spring面试经常问的东西</p>
+<a id="more"></a>
+<h3 id="Spring-Bean-的作用域"><a href="#Spring-Bean-的作用域" class="headerlink" title="Spring Bean 的作用域"></a>Spring Bean 的作用域</h3><ul>
+<li><p>singleton 单例，一读取配置文件就创建该实例</p>
+</li>
+<li><p>prototype 多例 读取配置文件时不加载实例，而是每次获取实例的时候会创建</p>
+</li>
+<li><p>request 每次http请求创建一个Bean，该作用域仅适用WebApplicationContext环境</p>
+</li>
+<li><p>session 同一个HTTP Session 共享一个Bean ，该作用域仅适WebApplicationContext环境</p>
+</li>
+<li><p>globalSession 该Session作用在所有服务器上。该作用域仅适WebApplicationContext环境</p>
+</li>
+</ul>
+<h3 id="Spring-事务中的隔离级别"><a href="#Spring-事务中的隔离级别" class="headerlink" title="Spring 事务中的隔离级别"></a>Spring 事务中的隔离级别</h3><p>TransactionDefinition 接口中定义了五个表示隔离级别的常量</p>
+<ul>
+<li>isolation_default 默认后端数据库隔离级别。mysql重复读 Oracle 提交读</li>
+<li><p>isolation_read_uncommited 未提交读</p>
+</li>
+<li><p>isolation_read_commited 提交读</p>
+</li>
+<li>isolation_repeatable_read 重复读</li>
+<li>isolation_serializable 可串行化</li>
+</ul>
+<h3 id="Spring事务中的事务传播行为"><a href="#Spring事务中的事务传播行为" class="headerlink" title="Spring事务中的事务传播行为"></a>Spring事务中的事务传播行为</h3><h4 id="支持当前事务的情况"><a href="#支持当前事务的情况" class="headerlink" title="支持当前事务的情况"></a>支持当前事务的情况</h4><ul>
+<li>propagation_required  如果当前存在事务，则加入该事务；如果当前没有事<br>务，则创建一个新的事务。</li>
+<li>propagation_supports 如果当前存在事务，则加入该事务；如果当前没有事<br>务，则以非事务的方式继续运行。</li>
+<li>propagation_mandatory 如果当前存在事务，则加入该事务；如果当前没有<br>事务，则抛出异常。（mandatory：强制性）</li>
+</ul>
+<h4 id="不支持当前事务的情况"><a href="#不支持当前事务的情况" class="headerlink" title="不支持当前事务的情况"></a>不支持当前事务的情况</h4><ul>
+<li>TransactionDeﬁnition.PROPAGATION_REQUIRES_NEW：创建一个新的事务，如果当前存在事务，则前事务挂起。- </li>
+<li>TransactionDeﬁnition.PROPAGATION_NOT_SUPPORTED：以非事务方式运行，如果当前存在事务，当前事务挂起。</li>
+<li>TransactionDeﬁnition.PROPAGATION_NEVER：以非事务方式运行，如果当前存在事务，则抛出异常w </li>
+</ul>
+<h4 id="其他情况"><a href="#其他情况" class="headerlink" title="其他情况"></a>其他情况</h4><ul>
+<li>TransactionDeﬁnition.PROPAGATION_NESTED：如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于TransactionDeﬁnition.PROPAGATION_REQUIRED。</li>
+</ul>
+<h3 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h3><p>AOP思想的实现一般都是基于代理模式，在JAVA中一般采用JDK动态代理模式，但是我们都知道，JDK动态代理模式<br>只能代理接口而不能代理类。因此，Spring AOP 会这样子来进行切换，因为Spring AOP 同时支持CGLIB、ASPECTJ、JDK动态代理。</p>
+<ul>
+<li>如果目标对象的实现类实现了接口，Spring AOP 将会采用JDK 动态代理来生成AOP 代理类；</li>
+<li>如果目标对象的实现类没有实现接口，Spring AOP 将会采用CGLIB 来生成AOP 代理类——不过这个选择过程对开发者完全透明、开发者也无需关心。</li>
+</ul>
+<h3 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h3><p><img src="C:\Users\Administrator\blog\source\pic\TIM截图20190806161558.png" alt="TIM截图20190806161558"></p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -176,16 +248,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/17/剑指Offer全解（一）/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/06/Spring相关/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/08/22/网易一面凉经/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/06/Linux后端必要操作/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux后端必要操作</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -200,396 +340,48 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Mybatis学习总结（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/16/Mybatis学习总结（二）/">Mybatis学习总结（二）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/16/Mybatis学习总结（二）/" class="archive-article-date">
-  	<time datetime="2019-06-16T13:08:53.847Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>因为自己就是通过黑马培训和自己看书学的框架，所以以下的代码为了方便都是借鉴黑马培训。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/16/Mybatis学习总结（二）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Bean-的作用域"><span class="toc-number">1.</span> <span class="toc-text">Spring Bean 的作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-事务中的隔离级别"><span class="toc-number">2.</span> <span class="toc-text">Spring 事务中的隔离级别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring事务中的事务传播行为"><span class="toc-number">3.</span> <span class="toc-text">Spring事务中的事务传播行为</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#支持当前事务的情况"><span class="toc-number">3.1.</span> <span class="toc-text">支持当前事务的情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不支持当前事务的情况"><span class="toc-number">3.2.</span> <span class="toc-text">不支持当前事务的情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他情况"><span class="toc-number">3.3.</span> <span class="toc-text">其他情况</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AOP"><span class="toc-number">4.</span> <span class="toc-text">AOP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IOC"><span class="toc-number">5.</span> <span class="toc-text">IOC</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-Mybatis学习总结（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/16/Mybatis学习总结（一）/">Mybatis学习总结（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/16/Mybatis学习总结（一）/" class="archive-article-date">
-  	<time datetime="2019-06-16T09:58:22.603Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近把SSM和Redis都看完了。现在开始把自己学习过程中的笔记整理一下子。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/16/Mybatis学习总结（一）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-写给孙婕的一封信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/写给孙婕的一封信/">写给孙婕的一封信</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/09/写给孙婕的一封信/" class="archive-article-date">
-  	<time datetime="2019-05-09T09:11:51.068Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>5-8号是你的生日</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/写给孙婕的一封信/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-建造者模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/04/建造者模式/">建造者、原型模式心得</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/04/建造者模式/" class="archive-article-date">
-  	<time datetime="2019-05-04T14:50:57.860Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>IDEA真是个好东西！！</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/04/建造者模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-单例、工厂模式心得" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/03/单例、工厂模式心得/">单例、工厂模式心得</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/03/单例、工厂模式心得/" class="archive-article-date">
-  	<time datetime="2019-05-03T07:08:41.891Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>用typora的第一天</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/03/单例、工厂模式心得/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/30/hello-world/">Welcome to my blog</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/30/hello-world/" class="archive-article-date">
-  	<time datetime="2019-04-30T11:36:43.019Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I will use it to write some notes;<br>Thank you for reading;</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/30/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+<script src="https://jjeejj.github.io/js/gitment.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2019/08/06/Spring相关/",
+  owner: 'yukio5470',
+  repo: 'yukio5470.github.io',
+  oauth: {
+    client_id: 'c0076a9177156be8eb50',
+    client_secret: 'c5a57c0cf14433f4bca928caa2a2dc123b51ec4d',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -612,8 +404,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

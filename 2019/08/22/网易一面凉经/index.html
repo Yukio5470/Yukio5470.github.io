@@ -8,13 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Yukio&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="title： 网易云一面凉经网易不按照套路出牌，我面经没写完，感觉没啥必要。">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Yukio&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/08/22/网易一面凉经/index.html">
 <meta property="og:site_name" content="Yukio&#39;s blog">
+<meta property="og:description" content="title： 网易云一面凉经网易不按照套路出牌，我面经没写完，感觉没啥必要。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-25T10:01:38.808Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Yukio&#39;s blog">
+<meta name="twitter:description" content="title： 网易云一面凉经网易不按照套路出牌，我面经没写完，感觉没啥必要。">
   
     <link rel="alternative" href="/atom.xml" title="Yukio&#39;s blog" type="application/atom+xml">
   
@@ -142,32 +146,80 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-剑指Offer全解（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-网易一面凉经" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/17/剑指Offer全解（一）/">剑指offer全解（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/17/剑指Offer全解（一）/" class="archive-article-date">
-  	<time datetime="2019-07-17T03:26:12.525Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-17</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本次将剑指offer的题分为4次发送，实习期间偷偷懒</p>
-        
+        <hr>
+<h2 id="title：-网易云一面凉经"><a href="#title：-网易云一面凉经" class="headerlink" title="title： 网易云一面凉经"></a>title： 网易云一面凉经</h2><p>网易不按照套路出牌，我面经没写完，感觉没啥必要。</p>
+<a id="more"></a>
+<p>1、怎么在Java层面把redis 的数据持久化。</p>
+<p>首先刚开始没听清，以为说的是redis的持久化方式。所以答了RDB快照 和AOF日志。</p>
+<p>RDB快照是在某一个时间点，保存当前数据库所有的数据，形成一个副本。接着把这个副本传给从服务器。从服务器将所有的数据请空，导入该副本。所以即使服务器死机，也只是会失去最近一次保存快照之后的数据。缺点是如果数据太多，保存快照的时间会比较长。</p>
+<p>AOF日志，是每次将写命令写入文件尾部。但是需要设置同步方式，因为一开始是写在缓存的，需要同步到硬盘上。有三种同步策略</p>
+<ul>
+<li>always：每次写命令，都同步一次</li>
+<li>everysec： 每一秒同步一次</li>
+<li>no：操作系统觉得</li>
+</ul>
+<p>综上其实第二种好一点</p>
+<p>我的回答其实是牛头不对马嘴，这题应该从Java层面来回答。所以正确的回答是，我们可以用Java获取redis的数据，并且在数据库种创建相应的表，将数据写入数据库中。</p>
+<p>2、写入的时间点应该怎么选择。怎么控制定时操作。</p>
+<p>这一题结合了实际情况来问，同时引到了网易云如果一个歌单的点赞数和点击数是用redis来保存的话，该什么时候持久化。</p>
+<p>可以设置定时任务，每分钟或者每小时，同步一次持久化。</p>
+<p>定时任务的设置可以分两类</p>
+<p>第一部分是Java基础中的</p>
+<ul>
+<li>利用线程while(true)并且设置sleep时间来实现定时</li>
+<li>利用timer和timetask来时间，启动和取消可以控制，而且可以设置第一次启动的delay时间</li>
+<li>利用schedulexecutorService定时线程池来控制。可以控制第一次线程的delay时间，</li>
+</ul>
+<p>第二部分是spring中的</p>
+<ul>
+<li>TimeTask</li>
+<li>Quartz两种触发器simple 周期任务</li>
+<li>crontriggerBean 指定时间运行</li>
+</ul>
+<p>3、死锁的四种条件，从Java层面分析，如果要避免死锁，应该从哪一个条件入手</p>
+<p>其实应该从环形等待入手的。</p>
+<blockquote>
+<p>解决方案是给每个资源分配序号，所有的线程去获取资源的时候，必须从序号小的开始获取，这样就可以避免死锁</p>
+</blockquote>
+<ul>
+<li>互斥  破坏的话就允许多个线程访问同一资源，比如打印机，其实只能单一线程使用。所以不合理</li>
+<li>请求和保持条件 在线程开始执行前就给线程分配所有资源。这样线程就不需要去请求资源。</li>
+<li>不可剥夺条件 </li>
+</ul>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -176,16 +228,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/17/剑指Offer全解（一）/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/22/网易一面凉经/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/08/25/有赞一面---凉经/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          有赞一面---凉经
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/06/Spring相关/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring相关</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -200,396 +320,48 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Mybatis学习总结（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/16/Mybatis学习总结（二）/">Mybatis学习总结（二）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/16/Mybatis学习总结（二）/" class="archive-article-date">
-  	<time datetime="2019-06-16T13:08:53.847Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>因为自己就是通过黑马培训和自己看书学的框架，所以以下的代码为了方便都是借鉴黑马培训。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/16/Mybatis学习总结（二）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#title：-网易云一面凉经"><span class="toc-number">1.</span> <span class="toc-text">title： 网易云一面凉经</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-Mybatis学习总结（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/16/Mybatis学习总结（一）/">Mybatis学习总结（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/16/Mybatis学习总结（一）/" class="archive-article-date">
-  	<time datetime="2019-06-16T09:58:22.603Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近把SSM和Redis都看完了。现在开始把自己学习过程中的笔记整理一下子。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/16/Mybatis学习总结（一）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-写给孙婕的一封信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/写给孙婕的一封信/">写给孙婕的一封信</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/09/写给孙婕的一封信/" class="archive-article-date">
-  	<time datetime="2019-05-09T09:11:51.068Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>5-8号是你的生日</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/写给孙婕的一封信/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-建造者模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/04/建造者模式/">建造者、原型模式心得</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/04/建造者模式/" class="archive-article-date">
-  	<time datetime="2019-05-04T14:50:57.860Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>IDEA真是个好东西！！</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/04/建造者模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-单例、工厂模式心得" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/03/单例、工厂模式心得/">单例、工厂模式心得</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/03/单例、工厂模式心得/" class="archive-article-date">
-  	<time datetime="2019-05-03T07:08:41.891Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>用typora的第一天</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/03/单例、工厂模式心得/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/30/hello-world/">Welcome to my blog</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/30/hello-world/" class="archive-article-date">
-  	<time datetime="2019-04-30T11:36:43.019Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I will use it to write some notes;<br>Thank you for reading;</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/30/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+<script src="https://jjeejj.github.io/js/gitment.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2019/08/22/网易一面凉经/",
+  owner: 'yukio5470',
+  repo: 'yukio5470.github.io',
+  oauth: {
+    client_id: 'c0076a9177156be8eb50',
+    client_secret: 'c5a57c0cf14433f4bca928caa2a2dc123b51ec4d',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -612,8 +384,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
